@@ -6,5 +6,8 @@
 
 - JavaScript
 - React
+- Material UI
+- Styled Components
+- React Router
 
 <p>More changes comming soon...</p>
