@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import App from './app';
 import * as serviceWorker from './serviceWorker';
+import ErrorBoundary from './error';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ErrorBoundary>
+      {(hasError) => (
+        <App hasError={ hasError } />
+      )}
+    </ErrorBoundary>
   </React.StrictMode>,
   document.getElementById('root')
 );
