@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ReactComponent as Logo } from './logo-react-zzaria.svg';
+import { ReactComponent as Logo } from '../../images/logo-react-zzaria.svg';
 import { Button } from '@material-ui/core';
 
 export const Container = styled.div`

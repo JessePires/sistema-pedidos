@@ -1,32 +1,55 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { LogoContainer, Logo, Toolbar } from './styles.js';
+import {
+  AppBar,
+  IconButton,
+  Menu,
+  MenuItem,
+  Typography
+} from '@material-ui/core';
+import { AccountCircle } from '@material-ui/icons';
+import { AuthContext } from '../../contexts/auth';
 
-const routes = [
-  {
-    path: '/rota1',
-    content: 'Rota 1'
-  },
+function Main () {
+  const [ anchorElement, setAnchorElement ] = useState(null);
+  const { userInfo, logout } = useContext(AuthContext);
 
-  {
-    path: '/rota2',
-    content: 'Rota 2'
-  }
-];
+  const handleOpenMenu = (e) => {
+    setAnchorElement(e.target);
+  };
 
-const Main = () => (
-  <>
-    <h1>Main</h1>
+  const handleClose = () => {
+    setAnchorElement(null);
+  };
 
-    <Switch >
-      {routes.map((route) => (
-        <Route
-          key={ route.path }
-          path={ route.path }
-          render={ () => <h2>{ route.content }</h2> }
-        />
-      ))}
-    </Switch>
-  </>
-);
+  return (
+    <AppBar>
+      <Toolbar>
+        <LogoContainer>
+          <Logo />
+        </LogoContainer>
+
+        <Typography color='inherit' >
+          Olá { userInfo.user.displayName.split(' ')[0] } :)
+        </Typography>
+
+        <IconButton
+          color='inherit'
+          onClick={ handleOpenMenu }
+        >
+          <AccountCircle />
+        </IconButton>
+
+        <Menu
+          open={ Boolean(anchorElement) }
+          onClose={ handleClose }
+          anchorEl={ anchorElement }
+        >
+          <MenuItem onClick={ logout } >Sair</MenuItem>
+        </Menu>
+      </Toolbar>
+    </AppBar>
+  );
+}
 
 export default Main;
