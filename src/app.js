@@ -1,5 +1,6 @@
-import React, { lazy, Suspense, useEffect, useContext } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React, { useEffect, useContext, useState, lazy, Suspense } from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { LinearProgress } from '@material-ui/core';
 import firebase from './services/firebase';
 import { AuthContext } from './contexts/auth';
@@ -7,8 +8,11 @@ import { AuthContext } from './contexts/auth';
 const MainPage = lazy(() => import('./pages/main'));
 const Login = lazy(() => import('./pages/login'));
 
-function App () {
-  const { setUserInfo } = useContext(AuthContext);
+function App ({ location }) {
+  const { userInfo, setUserInfo, logout } = useContext(AuthContext);
+  const [ didCheckUserIn, setDidCheckUserIn ] = useState(false);
+
+  const { isUserLoggedIn } = userInfo;
 
   useEffect (() => {
     firebase.auth().onAuthStateChanged((user) => {
@@ -17,10 +21,25 @@ function App () {
         isUserLoggedIn: !!user,
         user
       });
+
+      setDidCheckUserIn(true);
     });
+
+    window.logout = logout;
   }, []);
 
+  // Redirect Rules
+  if (!didCheckUserIn) {
+    return <LinearProgress variant='indeterminate' />
+  }
 
+  if (isUserLoggedIn && location.pathname === '/login') {
+    return <Redirect to='/' />
+  }
+
+  if (!isUserLoggedIn && location.pathname !== '/login') {
+    return <Redirect to='/login' />
+  }
 
   return (
     <Suspense
@@ -33,5 +52,9 @@ function App () {
     </Suspense>
   );
 }
+
+App.propTypes = {
+  location: PropTypes.object.isRequired
+};
 
 export default App;
