@@ -100,7 +100,9 @@ function Main () {
                 </Typography>
 
                 <Typography>
-                  { pizza.slices } fatias, { pizza.flavours } sabores
+                  { pizza.slices } fatias, { ' ' }
+                  { pizza.flavours } {' '}
+                  { singularOrPlural(pizza.flavours, 'sabor', 'sabores') }
                 </Typography>
 
               </PaperPizza>
@@ -110,6 +112,10 @@ function Main () {
       </Content>
     </>
   );
+}
+
+function singularOrPlural (amount, singular, plural) {
+  return amount === 1 ? singular : plural;
 }
 
 const pizzasDesc = [
