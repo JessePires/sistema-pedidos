@@ -17,7 +17,6 @@ import {
 const Header = () => {
   const [ anchorElement, setAnchorElement ] = useState(null);
   const { userInfo, logout } = useContext(AuthContext);
-  const userName = userInfo.user.displayName.split(' ')[0];
 
   const handleOpenMenu = (e) => {
     setAnchorElement(e.target);
@@ -35,7 +34,7 @@ const Header = () => {
         </LogoContainer>
 
         <Typography color='inherit' >
-          Olá { userName } :)
+          Olá { userInfo.user.firstName } :)
         </Typography>
 
         <IconButton

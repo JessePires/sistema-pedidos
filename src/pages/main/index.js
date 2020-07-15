@@ -18,7 +18,6 @@ import Header from './header';
 
 function Main () {
   const { userInfo } = useContext(AuthContext);
-  const userName = userInfo.user.displayName.split(' ')[0];
 
   return (
     <>
@@ -33,7 +32,7 @@ function Main () {
           alignItems='center'
         >
           <Title variant='h4' >
-            O que vai ser hoje, {userName}?
+            O que vai ser hoje, {userInfo.user.firstName}?
           </Title>
 
           <Title variant='h5' >

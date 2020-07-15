@@ -19,14 +19,17 @@ function App ({ location }) {
       console.log('dados do usuário:', user);
       setUserInfo({
         isUserLoggedIn: !!user,
-        user
+        user: user && {
+          ...user,
+          firstName: user.displayName.split(' ')[0]
+        }
       });
 
       setDidCheckUserIn(true);
     });
 
     window.logout = logout;
-  }, []);
+  }, [logout, setUserInfo]);
 
   // Redirect Rules
   if (!didCheckUserIn) {
