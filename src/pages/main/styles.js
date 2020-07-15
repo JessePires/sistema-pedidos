@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import {
   Toolbar as MaterialToolbar,
+  Grid,
   Divider as MaterialDivider,
   Paper,
   Typography
@@ -30,6 +31,13 @@ export const Toolbar = styled(MaterialToolbar)`
   width: 100%;
 `;
 
+export const PizzasGrid = styled(Grid).attrs({
+  container: true,
+  spacing: 2
+})`
+  padding: 20px,
+`;
+
 export const Divider = styled(MaterialDivider)`
   margin: 20px 0;
   width: 100%;
@@ -40,6 +48,7 @@ export const PaperPizza = styled(Paper)`
   display: flex;
   flex-direction: column;
   padding: 20px 0;
+  min-width: 250px;
 `;
 
 export const Pizza = styled.div`
@@ -88,3 +97,8 @@ export const PizzaText = styled(Typography).attrs({
 export const Content = styled.main`
   padding: 20px;
 `;
+
+export const Title = styled(Typography).attrs({
+  gutterBottom: true,
+  align: 'center'
+})``;

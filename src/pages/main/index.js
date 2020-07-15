@@ -15,10 +15,12 @@ import {
   Logo,
   Toolbar,
   Content,
+  Title,
   PaperPizza,
   Pizza,
   PizzaText,
-  Divider
+  Divider,
+  PizzasGrid
 } from './styles.js';
 
 function Main () {
@@ -71,19 +73,19 @@ function Main () {
           direction='column'
           alignItems='center'
         >
-          <Typography variant='h4' gutterBottom >
+          <Title variant='h4' >
             O que vai ser hoje, {userName}?
-          </Typography>
+          </Title>
 
-          <Typography variant='h5' gutterBottom >
+          <Title variant='h5' >
             Escolha o tamanho da pizza:
-          </Typography>
+          </Title>
         </Grid>
 
-        <Grid container spacing={ 2 } >
+        <PizzasGrid>
           {pizzasDesc.map((pizza) => (
 
-            <Grid item key={ pizza.id } xs={ 4 } >
+            <Grid item key={ pizza.id } xs >
               <PaperPizza >
                 <Pizza>
                   <PizzaText>
@@ -93,7 +95,10 @@ function Main () {
 
                 <Divider />
 
-                <Typography variant='h6' >{ pizza.name }</Typography>
+                <Typography variant='h6' >
+                  { pizza.name }
+                </Typography>
+
                 <Typography>
                   { pizza.slices } fatias, { pizza.flavours } sabores
                 </Typography>
@@ -101,7 +106,7 @@ function Main () {
               </PaperPizza>
             </Grid>
           ))}
-        </Grid>
+        </PizzasGrid>
       </Content>
     </>
   );
@@ -130,7 +135,7 @@ const pizzasDesc = [
     size: 32,
     slices: 8,
     flavours: 3
-  }
+  },
 ];
 
 const style = (theme) => ({
