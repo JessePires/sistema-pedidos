@@ -7,11 +7,6 @@ import {
   Divider as MaterialDivider
 } from '@material-ui/core';
 
-export const Title = styled(Typography).attrs({
-  gutterBottom: true,
-  align: 'center'
-})``;
-
 export const CardActionArea = styled(MaterialCardActionArea).attrs({
   component: Link
 })`

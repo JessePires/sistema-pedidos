@@ -6,34 +6,32 @@ import {
   Typography
 } from '@material-ui/core';
 import {
-  Title,
   CardActionArea,
   Pizza,
   PizzaText,
   Divider,
   PizzasGrid
 } from './styles.js';
+import { H4, H5} from 'ui/title';
+import HeaderContent from 'ui/headerContent';
 import pizzaSizes from 'fakeData/pizzaSizes';
 import { CHOOSE_PIZZA_FLAVOURS } from 'routes';
+import { singularOrPlural } from 'utils';
 
 const ChoosePizzaSize = () => {
   const { userInfo } = useContext(AuthContext);
 
   return (
     <>
-      <Grid
-        container
-        direction='column'
-        alignItems='center'
-      >
-        <Title variant='h4' >
+      <HeaderContent>
+        <H4>
           O que vai ser hoje, {userInfo.user.firstName}?
-        </Title>
+        </H4>
 
-        <Title variant='h5' >
+        <H5>
           Escolha o tamanho da pizza:
-        </Title>
-      </Grid>
+        </H5>
+      </HeaderContent>
 
       <PizzasGrid>
         {pizzaSizes.map((pizza) => (
@@ -69,9 +67,5 @@ const ChoosePizzaSize = () => {
     </>
   );
 };
-
-function singularOrPlural (amount, singular, plural) {
-  return amount === 1 ? singular : plural;
-}
 
 export default ChoosePizzaSize;
