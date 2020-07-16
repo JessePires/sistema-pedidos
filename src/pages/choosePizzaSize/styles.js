@@ -1,7 +1,8 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import {
+  CardActionArea as MaterialCardActionArea,
   Typography,
-  Paper,
   Grid,
   Divider as MaterialDivider
 } from '@material-ui/core';
@@ -11,7 +12,9 @@ export const Title = styled(Typography).attrs({
   align: 'center'
 })``;
 
-export const PaperPizza = styled(Paper)`
+export const CardActionArea = styled(MaterialCardActionArea).attrs({
+  component: Link
+})`
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -29,12 +32,14 @@ export const PizzasGrid = styled(Grid).attrs({
 export const Pizza = styled.div`
   height: 200px;
   width: 200px;
+  background: #fff;
   border: 1px solid #ccc;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  z-index: 1;
 
   &::before,
   &::after {

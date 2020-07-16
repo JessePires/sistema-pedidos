@@ -9,6 +9,7 @@ import {
 import Header from './header';
 
 const ChoosePizzaSize = lazy(() => import('../choosePizzaSize'));
+const ChoosePizzaFlavours = lazy(() => import('pages/choosePizzaFlavours'));
 
 const Main = () => (
   <>
@@ -20,7 +21,7 @@ const Main = () => (
       <Suspense fallback='Loading...' >
         <Switch >
           <Route path='/' exact component={ ChoosePizzaSize } />
-
+          <Route path='/sabores-da-pizza' component={ ChoosePizzaFlavours } />
         </Switch>
       </Suspense>
     </Content>
