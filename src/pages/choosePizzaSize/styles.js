@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import {
   CardActionArea as MaterialCardActionArea,
   Typography,
-  Grid,
-  Divider as MaterialDivider
 } from '@material-ui/core';
 
 export const CardActionArea = styled(MaterialCardActionArea).attrs({
@@ -15,13 +13,6 @@ export const CardActionArea = styled(MaterialCardActionArea).attrs({
   flex-direction: column;
   padding: 20px 0;
   min-width: 250px;
-`;
-
-export const PizzasGrid = styled(Grid).attrs({
-  container: true,
-  spacing: 2
-})`
-  padding: 20px,
 `;
 
 export const Pizza = styled.div`
@@ -67,9 +58,4 @@ export const PizzaText = styled(Typography).attrs({
   align-items: center;
   position: relative;
   z-index: 1;
-`;
-
-export const Divider = styled(MaterialDivider)`
-  margin: 20px 0;
-  width: 100%;
 `;

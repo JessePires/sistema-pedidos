@@ -8,12 +8,12 @@ import {
 import {
   CardActionArea,
   Pizza,
-  PizzaText,
-  Divider,
-  PizzasGrid
+  PizzaText
 } from './styles.js';
 import { H4, H5} from 'ui/title';
+import PizzasGrid from 'ui/pizzasGrid';
 import HeaderContent from 'ui/headerContent';
+import Divider from 'ui/divider';
 import pizzaSizes from 'fakeData/pizzaSizes';
 import { CHOOSE_PIZZA_FLAVOURS } from 'routes';
 import { singularOrPlural } from 'utils';
