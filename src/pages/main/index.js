@@ -7,6 +7,7 @@ import {
   Content,
 } from './styles.js';
 import Header from './header';
+import { HOME, CHOOSE_PIZZA_FLAVOURS } from 'routes';
 
 const ChoosePizzaSize = lazy(() => import('../choosePizzaSize'));
 const ChoosePizzaFlavours = lazy(() => import('pages/choosePizzaFlavours'));
@@ -20,8 +21,16 @@ const Main = () => (
     <Content>
       <Suspense fallback='Loading...' >
         <Switch >
-          <Route path='/' exact component={ ChoosePizzaSize } />
-          <Route path='/sabores-da-pizza' component={ ChoosePizzaFlavours } />
+          <Route
+            path={ HOME }
+            exact
+            component={ ChoosePizzaSize }
+          />
+
+          <Route
+            path={ CHOOSE_PIZZA_FLAVOURS }
+            component={ ChoosePizzaFlavours }
+          />
         </Switch>
       </Suspense>
     </Content>
