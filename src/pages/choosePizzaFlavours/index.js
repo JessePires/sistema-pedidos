@@ -13,6 +13,7 @@ import {
   Checkbox,
   Footer,
   OrderContainer,
+  Button
 } from './styles';
 import Content from 'ui/content.js';
 import { H4 } from 'ui/title';
@@ -20,7 +21,7 @@ import HeaderContent from 'ui/headerContent';
 import PizzasGrid from 'ui/pizzasGrid';
 import Divider from  'ui/divider';
 import { toMoney, singularOrPlural } from 'utils';
-import { HOME } from 'routes';
+import { HOME, CHOOSE_PIZZA_QUANTITY } from 'routes';
 import { AuthContext } from 'contexts/auth';
 
 import pizzaFlavours from 'fakeData/pizzaFlavours';
@@ -107,11 +108,17 @@ const ChoosePizzaFlavours = ({ location }) => {
                 Pizza <b>{ name.toUpperCase() }</b> { ' - ' }
                 ({ slices } fatias, { flavours } {' '}
                 { singularOrPlural(flavours, 'sabor', 'sabores') })
-              </Typography>
+              </Typography>Home
             </OrderContainer>
 
             <Grid item >
-              Botões
+              <Button to={ HOME } >
+                Mudar Tamanho
+              </Button>
+
+              <Button to={ CHOOSE_PIZZA_QUANTITY } color='primary' >
+                Quantas Pizzas?
+              </Button>
             </Grid>
           </Grid>
         </Container>
