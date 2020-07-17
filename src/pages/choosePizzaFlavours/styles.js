@@ -8,7 +8,11 @@ export const Img = styled.img`
 
 export const Card = styled(MaterialCard)`
   border: 2px solid transparent;
-  border-color: ${({ checked }) => checked === true ? '#000' : ''};
+  border-color: ${({ theme, checked }) =>
+    checked === true
+    ? theme.palette.secondary.light
+    : ''
+  };
 `;
 
 export const Label = styled(CardLink).attrs({
