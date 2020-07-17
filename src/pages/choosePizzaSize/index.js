@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../../contexts/auth';
+import React from 'react';
+import { useAuth } from 'hooks';
 import {
   Grid,
   Card,
@@ -20,7 +20,7 @@ import { CHOOSE_PIZZA_FLAVOURS } from 'routes';
 import { singularOrPlural } from 'utils';
 
 const ChoosePizzaSize = () => {
-  const { userInfo } = useContext(AuthContext);
+  const { userInfo } = useAuth();
 
   return (
     <>

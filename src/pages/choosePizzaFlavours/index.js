@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
@@ -22,13 +22,13 @@ import PizzasGrid from 'ui/pizzasGrid';
 import Divider from  'ui/divider';
 import { toMoney, singularOrPlural } from 'utils';
 import { HOME, CHOOSE_PIZZA_QUANTITY } from 'routes';
-import { AuthContext } from 'contexts/auth';
+import { useAuth } from 'hooks';
 
 import pizzaFlavours from 'fakeData/pizzaFlavours';
 
 const ChoosePizzaFlavours = ({ location }) => {
   const [ checkboxes, setCheckboxes ] = useState(() => ({}));
-  const { userInfo } = useContext(AuthContext);
+  const { userInfo } = useAuth();
 
   console.log('userInfo: ', userInfo);
 
@@ -108,7 +108,7 @@ const ChoosePizzaFlavours = ({ location }) => {
                 Pizza <b>{ name.toUpperCase() }</b> { ' - ' }
                 ({ slices } fatias, { flavours } {' '}
                 { singularOrPlural(flavours, 'sabor', 'sabores') })
-              </Typography>Home
+              </Typography>
             </OrderContainer>
 
             <Grid item >

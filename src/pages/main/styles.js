@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import {
   Toolbar as MaterialToolbar,
 } from '@material-ui/core';
@@ -27,4 +28,8 @@ export const Toolbar = styled(MaterialToolbar)`
     max-width: ${ ({theme}) => theme.breakpoints.values.lg }px;
     width: 100%;
   }
+`;
+
+export const LinkLogo = styled(Link)`
+  display: inline-block;
 `;
