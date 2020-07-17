@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
@@ -19,13 +19,28 @@ import { HOME } from 'routes';
 import pizzaFlavours from 'fakeData/pizzaFlavours';
 
 const ChoosePizzaFlavours = ({ location }) => {
-  console.log('location:', location);
+  const [ checkboxes, setCheckboxes ] = useState(() => ({}));
+  console.log('checkboxes:', checkboxes);
 
   if (!location.state) {
     return <Redirect to={ HOME } />
   }
 
   const { flavours, id } = location.state;
+
+  const handleChangeCheckbox = (pizzaId) => (e) => {
+    console.log('checkboxes:', checkboxes);
+
+    if (checkboxesChecked(checkboxes).length === flavours
+      && e.target.checked === true) {
+      return
+    }
+
+    setCheckboxes((checkboxes) => ({
+      ...checkboxes,
+      [pizzaId]: e.target.checked
+    }));
+  };
 
   return (
     <>
@@ -45,7 +60,11 @@ const ChoosePizzaFlavours = ({ location }) => {
           >
             <Card>
               <Label>
-                <input type='checkbox' />
+                <input
+                  type='checkbox'
+                  checked={ !!checkboxes[pizza.id] }
+                  onChange={ handleChangeCheckbox(pizza.id) }
+                />
 
                 <Img src={ pizza.image } alt={ pizza.name } />
 
@@ -66,6 +85,10 @@ const ChoosePizzaFlavours = ({ location }) => {
     </>
   );
 };
+
+function checkboxesChecked (checkboxes) {
+  return Object.values(checkboxes).filter(Boolean);
+}
 
 ChoosePizzaFlavours.propTypes = {
   location: PropTypes.object.isRequired
