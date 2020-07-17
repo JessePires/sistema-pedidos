@@ -6,7 +6,10 @@ import {
   Card,
   Typography
 } from '@material-ui/core';
-import { Img } from './styles';
+import {
+  Img,
+  Label
+} from './styles';
 import { H4 } from 'ui/title';
 import HeaderContent from 'ui/headerContent';
 import PizzasGrid from 'ui/pizzasGrid';
@@ -41,17 +44,21 @@ const ChoosePizzaFlavours = ({ location }) => {
             xs
           >
             <Card>
-              <Img src={ pizza.image } alt={ pizza.name } />
+              <Label>
+                <input type='checkbox' />
 
-              <Divider />
+                <Img src={ pizza.image } alt={ pizza.name } />
 
-              <Typography>
-                { pizza.name }
-              </Typography>
+                <Divider />
 
-              <Typography variant='h5' >
-                R${ pizza.value[id] }
-              </Typography>
+                <Typography>
+                  { pizza.name }
+                </Typography>
+
+                <Typography variant='h5' >
+                  R${ pizza.value[id] }
+                </Typography>
+              </Label>
             </Card>
           </Grid>
         ))}

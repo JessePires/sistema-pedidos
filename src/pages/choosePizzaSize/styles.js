@@ -1,19 +1,7 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import {
-  CardActionArea as MaterialCardActionArea,
   Typography,
 } from '@material-ui/core';
-
-export const CardActionArea = styled(MaterialCardActionArea).attrs({
-  component: Link
-})`
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  padding: 20px 0;
-  min-width: 250px;
-`;
 
 export const Pizza = styled.div`
   height: 200px;

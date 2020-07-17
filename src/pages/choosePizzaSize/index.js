@@ -6,7 +6,6 @@ import {
   Typography
 } from '@material-ui/core';
 import {
-  CardActionArea,
   Pizza,
   PizzaText
 } from './styles.js';
@@ -14,6 +13,7 @@ import { H4, H5} from 'ui/title';
 import PizzasGrid from 'ui/pizzasGrid';
 import HeaderContent from 'ui/headerContent';
 import Divider from 'ui/divider';
+import CardLink from 'ui/cardLink';
 import pizzaSizes from 'fakeData/pizzaSizes';
 import { CHOOSE_PIZZA_FLAVOURS } from 'routes';
 import { singularOrPlural } from 'utils';
@@ -38,7 +38,7 @@ const ChoosePizzaSize = () => {
 
           <Grid item key={ pizza.id } xs >
             <Card>
-              <CardActionArea to={{
+              <CardLink to={{
                 pathname: CHOOSE_PIZZA_FLAVOURS,
                 state: pizza
               }}>
@@ -59,7 +59,7 @@ const ChoosePizzaSize = () => {
                   { pizza.flavours } {' '}
                   { singularOrPlural(pizza.flavours, 'sabor', 'sabores') }
                 </Typography>
-              </CardActionArea>
+              </CardLink>
             </Card>
           </Grid>
         ))}
