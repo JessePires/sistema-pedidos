@@ -7,12 +7,14 @@ export const Img = styled.img`
 `;
 
 export const Card = styled(MaterialCard)`
-  border: 2px solid transparent;
-  border-color: ${({ theme, checked }) =>
-    checked === true
-    ? theme.palette.secondary.light
-    : ''
-  };
+  && {
+    border: 2px solid transparent;
+    border-color: ${({ theme, checked }) =>
+      checked === true
+      ? theme.palette.secondary.light
+      : ''
+    };
+  }
 `;
 
 export const Label = styled(CardLink).attrs({
@@ -27,5 +29,5 @@ export const Checkbox = styled.input.attrs({
 
 export const Footer = styled.footer`
   box-shadow: 0 0 3px ${ ({theme}) => theme.palette.grey[400] };
-  padding: ${ ({theme}) => theme.spacing(3) }px;
+  padding: ${ ({theme}) => theme.spacing(2) }px;
 `;

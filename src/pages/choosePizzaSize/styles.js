@@ -37,13 +37,15 @@ export const Pizza = styled.div`
 export const PizzaText = styled(Typography).attrs({
   variant: 'h5'
 })`
-  height: 75px;
-  width: 75px;
-  border-radius: 50%;
-  background: ${ ({theme}) => theme.palette.common.white };
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  z-index: 1;
+  && {
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+    background: ${ ({theme}) => theme.palette.common.white };
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
 `;

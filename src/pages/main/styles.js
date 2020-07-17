@@ -22,7 +22,9 @@ export const Logo = styled(MainLogo)`
 `;
 
 export const Toolbar = styled(MaterialToolbar)`
-  margin: 0 auto;
-  max-width: ${ ({theme}) => theme.breakpoints.values.lg }px;
-  width: 100%;
+  && {
+    margin: 0 auto;
+    max-width: ${ ({theme}) => theme.breakpoints.values.lg }px;
+    width: 100%;
+  }
 `;
