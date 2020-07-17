@@ -13,20 +13,20 @@ export const Logo = styled(MainLogo)`
   height: 50px;
 
   & path {
-    fill: #fff;
+    fill: ${ ({theme}) => theme.palette.common.white };
   }
 
   & line {
-    stroke: #fff;
+    stroke: ${ ({theme}) => theme.palette.common.white };
   }
 `;
 
 export const Toolbar = styled(MaterialToolbar)`
   margin: 0 auto;
-  max-width: 960px;
+  max-width: ${ ({theme}) => theme.breakpoints.values.lg }px;
   width: 100%;
 `;
 
 export const Content = styled.main`
-  padding: 20px;
+  padding: ${ ({theme}) => theme.spacing(3) }px;
 `;

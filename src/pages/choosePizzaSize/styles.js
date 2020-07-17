@@ -6,8 +6,8 @@ import {
 export const Pizza = styled.div`
   height: 200px;
   width: 200px;
-  background: #fff;
-  border: 1px solid #ccc;
+  background: ${ ({theme}) =>  theme.palette.common.white };
+  border: 1px solid ${ ({theme}) => theme.palette.grey.A100 };
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -18,7 +18,7 @@ export const Pizza = styled.div`
   &::before,
   &::after {
     content: '';
-    background: #ccc;
+    background: ${ ({theme}) => theme.palette.grey.A100 };
     position: absolute;
     transform: rotate(45deg);
   }
@@ -40,7 +40,7 @@ export const PizzaText = styled(Typography).attrs({
   height: 75px;
   width: 75px;
   border-radius: 50%;
-  background: #fff;
+  background: ${ ({theme}) => theme.palette.common.white };
   display: flex;
   justify-content: center;
   align-items: center;

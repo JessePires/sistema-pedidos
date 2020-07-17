@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Grid } from '@material-ui/core';
-import { Container, StyledLogo, GithubButton } from './style';
+import { Container, StyledLogo, GithubButton } from './styles';
 import { AuthContext } from '../../contexts/auth';
 
 function Login () {

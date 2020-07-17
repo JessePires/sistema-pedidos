@@ -3,7 +3,7 @@ import { ReactComponent as Logo } from '../../images/logo-react-zzaria.svg';
 import { Button } from '@material-ui/core';
 
 export const Container = styled.div`
-  padding: 20px;
+  padding: ${ ({ theme }) => theme.spacing(3) }px;
 `;
 
 export const StyledLogo = styled(Logo)`
@@ -15,8 +15,8 @@ export const GithubButton = styled(Button).attrs({
   fullWidth: true
 })`
   && {
-    font-size: 25px;
-    padding: 15px;
+    font-size: ${ ({theme}) => theme.typography.h5.fontSize };
+    padding: ${ ({theme}) => theme.spacing(2) }px;
     max-width: 430px;
     text-transform: none;
   }
