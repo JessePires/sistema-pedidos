@@ -15,7 +15,7 @@ import { H4 } from 'ui/title';
 import HeaderContent from 'ui/headerContent';
 import PizzasGrid from 'ui/pizzasGrid';
 import Divider from  'ui/divider';
-import { singularOrPlural } from 'utils';
+import { toMoney, singularOrPlural } from 'utils';
 import { HOME } from 'routes';
 import pizzaFlavours from 'fakeData/pizzaFlavours';
 
@@ -75,7 +75,7 @@ const ChoosePizzaFlavours = ({ location }) => {
                 </Typography>
 
                 <Typography variant='h5' >
-                  R${ pizza.value[id] }
+                  { toMoney(pizza.value[id]) }
                 </Typography>
               </Label>
             </Card>
