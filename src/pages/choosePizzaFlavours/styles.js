@@ -1,5 +1,8 @@
 import styled from 'styled-components';
-import { Card as MaterialCard } from '@material-ui/core';
+import {
+  Card as MaterialCard,
+  Grid
+} from '@material-ui/core';
 import CardLink from 'ui/cardLink';
 
 export const Img = styled.img`
@@ -30,4 +33,12 @@ export const Checkbox = styled.input.attrs({
 export const Footer = styled.footer`
   box-shadow: 0 0 3px ${ ({theme}) => theme.palette.grey[400] };
   padding: ${ ({theme}) => theme.spacing(2) }px;
+`;
+
+export const OrderContainer = styled(Grid).attrs({
+  item: true
+})`
+  && {
+    flex-grow: 1;
+  }
 `;
