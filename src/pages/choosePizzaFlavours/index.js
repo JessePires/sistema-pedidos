@@ -3,12 +3,13 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
   Grid,
-  Card,
   Typography
 } from '@material-ui/core';
 import {
   Img,
-  Label
+  Card,
+  Label,
+  Checkbox
 } from './styles';
 import { H4 } from 'ui/title';
 import HeaderContent from 'ui/headerContent';
@@ -58,10 +59,9 @@ const ChoosePizzaFlavours = ({ location }) => {
             key={ pizza.id }
             xs
           >
-            <Card>
+            <Card checked={ !!checkboxes[pizza.id] } >
               <Label>
-                <input
-                  type='checkbox'
+                <Checkbox
                   checked={ !!checkboxes[pizza.id] }
                   onChange={ handleChangeCheckbox(pizza.id) }
                 />
