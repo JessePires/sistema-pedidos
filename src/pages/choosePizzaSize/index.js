@@ -9,6 +9,7 @@ import {
   Pizza,
   PizzaText
 } from './styles.js';
+import Content from 'ui/content';
 import { H4, H5} from 'ui/title';
 import PizzasGrid from 'ui/pizzasGrid';
 import HeaderContent from 'ui/headerContent';
@@ -23,47 +24,49 @@ const ChoosePizzaSize = () => {
 
   return (
     <>
-      <HeaderContent>
-        <H4>
-          O que vai ser hoje, {userInfo.user.firstName}?
-        </H4>
+      <Content>
+        <HeaderContent>
+          <H4>
+            O que vai ser hoje, {userInfo.user.firstName}?
+          </H4>
 
-        <H5>
-          Escolha o tamanho da pizza:
-        </H5>
-      </HeaderContent>
+          <H5>
+            Escolha o tamanho da pizza:
+          </H5>
+        </HeaderContent>
 
-      <PizzasGrid>
-        {pizzaSizes.map((pizza) => (
+        <PizzasGrid>
+          {pizzaSizes.map((pizza) => (
 
-          <Grid item key={ pizza.id } xs >
-            <Card>
-              <CardLink to={{
-                pathname: CHOOSE_PIZZA_FLAVOURS,
-                state: pizza
-              }}>
-                <Pizza>
-                  <PizzaText>
-                    { pizza.size }cm
-                  </PizzaText>
-                </Pizza>
+            <Grid item key={ pizza.id } xs >
+              <Card>
+                <CardLink to={{
+                  pathname: CHOOSE_PIZZA_FLAVOURS,
+                  state: pizza
+                }}>
+                  <Pizza>
+                    <PizzaText>
+                      { pizza.size }cm
+                    </PizzaText>
+                  </Pizza>
 
-                <Divider />
+                  <Divider />
 
-                <Typography variant='h6' >
-                  { pizza.name }
-                </Typography>
+                  <Typography variant='h6' >
+                    { pizza.name }
+                  </Typography>
 
-                <Typography>
-                  { pizza.slices } fatias, { ' ' }
-                  { pizza.flavours } {' '}
-                  { singularOrPlural(pizza.flavours, 'sabor', 'sabores') }
-                </Typography>
-              </CardLink>
-            </Card>
-          </Grid>
-        ))}
-      </PizzasGrid>
+                  <Typography>
+                    { pizza.slices } fatias, { ' ' }
+                    { pizza.flavours } {' '}
+                    { singularOrPlural(pizza.flavours, 'sabor', 'sabores') }
+                  </Typography>
+                </CardLink>
+              </Card>
+            </Grid>
+          ))}
+        </PizzasGrid>
+      </Content>
     </>
   );
 };

@@ -3,14 +3,17 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
   Grid,
-  Typography
+  Typography,
+  Container
 } from '@material-ui/core';
 import {
   Img,
   Card,
   Label,
-  Checkbox
+  Checkbox,
+  Footer
 } from './styles';
+import Content from 'ui/content.js';
 import { H4 } from 'ui/title';
 import HeaderContent from 'ui/headerContent';
 import PizzasGrid from 'ui/pizzasGrid';
@@ -45,43 +48,51 @@ const ChoosePizzaFlavours = ({ location }) => {
 
   return (
     <>
-      <HeaderContent>
-        <H4>
-          Escolha até { flavours } {' '}
-          { singularOrPlural(flavours, 'sabor', 'sabores') }:
-        </H4>
-      </HeaderContent>
+      <Content>
+        <HeaderContent>
+          <H4>
+            Escolha até { flavours } {' '}
+            { singularOrPlural(flavours, 'sabor', 'sabores') }:
+          </H4>
+        </HeaderContent>
 
-      <PizzasGrid>
-        {pizzaFlavours.map((pizza) => (
-          <Grid
-            item
-            key={ pizza.id }
-            xs
-          >
-            <Card checked={ !!checkboxes[pizza.id] } >
-              <Label>
-                <Checkbox
-                  checked={ !!checkboxes[pizza.id] }
-                  onChange={ handleChangeCheckbox(pizza.id) }
-                />
+        <PizzasGrid>
+          {pizzaFlavours.map((pizza) => (
+            <Grid
+              item
+              key={ pizza.id }
+              xs
+            >
+              <Card checked={ !!checkboxes[pizza.id] } >
+                <Label>
+                  <Checkbox
+                    checked={ !!checkboxes[pizza.id] }
+                    onChange={ handleChangeCheckbox(pizza.id) }
+                  />
 
-                <Img src={ pizza.image } alt={ pizza.name } />
+                  <Img src={ pizza.image } alt={ pizza.name } />
 
-                <Divider />
+                  <Divider />
 
-                <Typography>
-                  { pizza.name }
-                </Typography>
+                  <Typography>
+                    { pizza.name }
+                  </Typography>
 
-                <Typography variant='h5' >
-                  { toMoney(pizza.value[id]) }
-                </Typography>
-              </Label>
-            </Card>
-          </Grid>
-        ))}
-      </PizzasGrid>
+                  <Typography variant='h5' >
+                    { toMoney(pizza.value[id]) }
+                  </Typography>
+                </Label>
+              </Card>
+            </Grid>
+          ))}
+        </PizzasGrid>
+      </Content>
+
+      <Footer>
+        <Container>
+          Conteúdo
+        </Container>
+      </Footer>
     </>
   );
 };

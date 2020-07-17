@@ -26,7 +26,3 @@ export const Toolbar = styled(MaterialToolbar)`
   max-width: ${ ({theme}) => theme.breakpoints.values.lg }px;
   width: 100%;
 `;
-
-export const Content = styled.main`
-  padding: ${ ({theme}) => theme.spacing(3) }px;
-`;

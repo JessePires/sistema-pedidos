@@ -7,7 +7,7 @@ export const Pizza = styled.div`
   height: 200px;
   width: 200px;
   background: ${ ({theme}) =>  theme.palette.common.white };
-  border: 1px solid ${ ({theme}) => theme.palette.grey.A100 };
+  border: 1px solid ${ ({theme}) => theme.palette.grey[400] };
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -18,7 +18,7 @@ export const Pizza = styled.div`
   &::before,
   &::after {
     content: '';
-    background: ${ ({theme}) => theme.palette.grey.A100 };
+    background: ${ ({theme}) => theme.palette.grey[400] };
     position: absolute;
     transform: rotate(45deg);
   }

@@ -3,9 +3,6 @@ import { Switch, Route } from 'react-router-dom';
 import {
   withStyles
 } from '@material-ui/core';
-import {
-  Content,
-} from './styles.js';
 import Header from './header';
 import { HOME, CHOOSE_PIZZA_FLAVOURS } from 'routes';
 
@@ -18,22 +15,20 @@ const Main = () => (
 
     <Spacer />
 
-    <Content>
-      <Suspense fallback='Loading...' >
-        <Switch >
-          <Route
-            path={ HOME }
-            exact
-            component={ ChoosePizzaSize }
-          />
+    <Suspense fallback='Loading...' >
+      <Switch >
+        <Route
+          path={ HOME }
+          exact
+          component={ ChoosePizzaSize }
+        />
 
-          <Route
-            path={ CHOOSE_PIZZA_FLAVOURS }
-            component={ ChoosePizzaFlavours }
-          />
-        </Switch>
-      </Suspense>
-    </Content>
+        <Route
+          path={ CHOOSE_PIZZA_FLAVOURS }
+          component={ ChoosePizzaFlavours }
+        />
+      </Switch>
+    </Suspense>
   </>
 );
 
