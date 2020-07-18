@@ -14,7 +14,7 @@ export const GithubButton = styled(Button).attrs({
   variant: 'contained',
   fullWidth: true
 })`
-  && {
+  & {
     font-size: ${ ({theme}) => theme.typography.h5.fontSize };
     padding: ${ ({theme}) => theme.spacing(2) }px;
     max-width: 430px;

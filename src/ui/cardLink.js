@@ -5,7 +5,7 @@ import { CardActionArea } from '@material-ui/core';
 const CardLink = styled(CardActionArea).attrs({
   component: Link
 })`
-  &&{
+  & {
     align-items: center;
     display: flex;
     flex-direction: column;

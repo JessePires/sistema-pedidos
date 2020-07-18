@@ -4,10 +4,15 @@ import {
   withStyles
 } from '@material-ui/core';
 import Header from './header';
-import { HOME, CHOOSE_PIZZA_FLAVOURS } from 'routes';
+import {
+  HOME,
+  CHOOSE_PIZZA_FLAVOURS,
+  CHOOSE_PIZZA_QUANTITY
+} from 'routes';
 
-const ChoosePizzaSize = lazy(() => import('../choosePizzaSize'));
+const ChoosePizzaSize = lazy(() => import('pages/choosePizzaSize'));
 const ChoosePizzaFlavours = lazy(() => import('pages/choosePizzaFlavours'));
+const ChoosePizzaQuantity = lazy(() => import('pages/choosePizzaQuantity'));
 
 const Main = () => (
   <>
@@ -26,6 +31,11 @@ const Main = () => (
         <Route
           path={ CHOOSE_PIZZA_FLAVOURS }
           component={ ChoosePizzaFlavours }
+        />
+
+        <Route
+          path={ CHOOSE_PIZZA_QUANTITY }
+          component={ ChoosePizzaQuantity }
         />
       </Switch>
     </Suspense>

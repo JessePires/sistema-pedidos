@@ -12,7 +12,7 @@ export const Img = styled.img`
 `;
 
 export const Card = styled(MaterialCard)`
-  && {
+  & {
     border: 2px solid transparent;
     border-color: ${({ theme, checked }) =>
       checked === true

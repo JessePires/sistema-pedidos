@@ -37,7 +37,7 @@ export const Pizza = styled.div`
 export const PizzaText = styled(Typography).attrs({
   variant: 'h5'
 })`
-  && {
+  & {
     height: 75px;
     width: 75px;
     border-radius: 50%;
