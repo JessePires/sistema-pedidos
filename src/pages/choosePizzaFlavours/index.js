@@ -88,13 +88,12 @@ const ChoosePizzaFlavours = ({ location }) => {
       </Content>
 
       <Footer
-        buttons={[
-          {
-            to: HOME,
+        buttons={{
+          back: {
             children: 'Mudar Tamanho'
           },
 
-          {
+          action: {
             to: {
               pathname: CHOOSE_PIZZA_QUANTITY,
               state: {
@@ -106,7 +105,7 @@ const ChoosePizzaFlavours = ({ location }) => {
             children: 'Quantas pizzas?',
             color: 'primary'
           }
-        ]}
+        }}
       />
     </>
   );
