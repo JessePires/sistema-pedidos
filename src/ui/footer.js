@@ -10,9 +10,8 @@ import {
 } from '@material-ui/core';
 import { useAuth } from 'hooks';
 import { singularOrPlural } from 'utils';
-import { HOME, CHOOSE_PIZZA_QUANTITY } from 'routes';
 
-function Footer ({ location }) {
+function Footer ({ buttons, location }) {
   const { userInfo } = useAuth();
   const { name, slices, flavours } = location.state;
 
@@ -33,13 +32,9 @@ function Footer ({ location }) {
           </OrderContainer>
 
           <Grid item >
-            <Button to={ HOME } >
-              Mudar Tamanho
-            </Button>
-
-            <Button to={ CHOOSE_PIZZA_QUANTITY } color='primary' >
-              Quantas Pizzas?
-            </Button>
+            {buttons.map((button) => (
+              <Button key={ button.to } { ...button } />
+            ))}
           </Grid>
         </Grid>
       </Container>
@@ -70,6 +65,7 @@ const Button = styled(MaterialButton).attrs({
 `;
 
 Footer.propTypes = {
+  buttons: PropTypes.array.isRequired,
   location: PropTypes.object.isRequired
 };
 
