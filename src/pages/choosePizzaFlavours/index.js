@@ -3,42 +3,33 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
   Grid,
-  Typography,
-  Container
+  Typography
 } from '@material-ui/core';
 import {
   Img,
   Card,
   Label,
-  Checkbox,
-  Footer,
-  OrderContainer,
-  Button
+  Checkbox
 } from './styles';
 import Content from 'ui/content.js';
 import { H4 } from 'ui/title';
 import HeaderContent from 'ui/headerContent';
 import PizzasGrid from 'ui/pizzasGrid';
 import Divider from  'ui/divider';
+import Footer from 'ui/footer';
 import { toMoney, singularOrPlural } from 'utils';
-import { HOME, CHOOSE_PIZZA_QUANTITY } from 'routes';
-import { useAuth } from 'hooks';
+import { HOME } from 'routes';
 
 import pizzaFlavours from 'fakeData/pizzaFlavours';
 
 const ChoosePizzaFlavours = ({ location }) => {
   const [ checkboxes, setCheckboxes ] = useState(() => ({}));
-  const { userInfo } = useAuth();
-
-  console.log('userInfo: ', userInfo);
-
-  console.log('checkboxes:', checkboxes);
 
   if (!location.state) {
     return <Redirect to={ HOME } />
   }
 
-  const { flavours, id, name, slices } = location.state;
+  const { flavours, id } = location.state;
 
   const handleChangeCheckbox = (pizzaId) => (e) => {
     console.log('checkboxes:', checkboxes);
@@ -96,33 +87,7 @@ const ChoosePizzaFlavours = ({ location }) => {
         </PizzasGrid>
       </Content>
 
-      <Footer>
-        <Container>
-          <Grid container >
-            <OrderContainer>
-              <Typography>
-                <b>{ userInfo.user.firstName }, seu pedido é:</b>
-              </Typography>
-
-              <Typography>
-                Pizza <b>{ name.toUpperCase() }</b> { ' - ' }
-                ({ slices } fatias, { flavours } {' '}
-                { singularOrPlural(flavours, 'sabor', 'sabores') })
-              </Typography>
-            </OrderContainer>
-
-            <Grid item >
-              <Button to={ HOME } >
-                Mudar Tamanho
-              </Button>
-
-              <Button to={ CHOOSE_PIZZA_QUANTITY } color='primary' >
-                Quantas Pizzas?
-              </Button>
-            </Grid>
-          </Grid>
-        </Container>
-      </Footer>
+      <Footer />
     </>
   );
 };
