@@ -99,11 +99,11 @@ const ChoosePizzaFlavours = ({ location }) => {
               state: {
                 ...location.state,
                 pizzaFlavours: getFlavoursNameAndId(checkboxes)
-              }
+              },
             },
 
             children: 'Quantas pizzas?',
-            color: 'primary'
+            disabled: checkboxesChecked(checkboxes).length === 0
           }
         }}
       />
