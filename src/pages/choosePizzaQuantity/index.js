@@ -1,19 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Content from 'ui/content';
 import HeaderContent from 'ui/headerContent';
 import { H4 } from 'ui/title';
 import Footer from 'ui/footer';
+import { Button } from '@material-ui/core';
 import {
   Input,
   MainContent
 } from './styles';
-import { HOME } from 'routes';
+import { HOME, CHECKOUT } from 'routes';
 
 function ChoosePizzaQuantity ({ location }) {
+  const [quantity, setQuantity] = useState(1);
+
   if (!location.state) {
     return <Redirect to={ HOME } />
+  }
+
+  function handleChange (e) {
+    const { value } = e.target;
+
+    if (value >= 1) {
+      setQuantity(e.target.value);
+    }
   }
 
   return (
@@ -27,7 +38,16 @@ function ChoosePizzaQuantity ({ location }) {
         </HeaderContent>
 
         <MainContent>
-          <Input defaultValue='1' autoFocus />
+          <Input
+            value={ quantity }
+            onChange={ handleChange }
+            autoFocus
+          />
+
+          <Button variant='contained' color='secondary' >
+            Adicionar e <br/>
+            montar outra
+          </Button>
         </MainContent>
       </Content>
 
@@ -38,7 +58,7 @@ function ChoosePizzaQuantity ({ location }) {
           },
 
           action: {
-            to: '/',
+            to: CHECKOUT,
             children: 'Finalizar Compra',
           }
         }}

@@ -4,6 +4,10 @@ import { Input as MaterialInput } from '@material-ui/core';
 export const Input = styled(MaterialInput).attrs({
   type: 'number'
 })`
+  && {
+    margin-bottom: ${ ({ theme }) => theme.spacing(4) }px;
+  }
+
   & input {
     font-size: 80px;
     padding: 10px;
@@ -14,6 +18,7 @@ export const Input = styled(MaterialInput).attrs({
 
 export const MainContent = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   margin-top: ${ ({theme}) => theme.spacing(3) }px;
 `;
