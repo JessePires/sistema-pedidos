@@ -1,4 +1,6 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Content from 'ui/content';
 import HeaderContent from 'ui/headerContent';
 import { H4 } from 'ui/title';
@@ -7,8 +9,13 @@ import {
   Input,
   MainContent
 } from './styles';
+import { HOME } from 'routes';
 
-function ChoosePizzaQuantity () {
+function ChoosePizzaQuantity ({ location }) {
+  if (!location.state) {
+    return <Redirect to={ HOME } />
+  }
+
   return (
     <>
       <Content>
@@ -39,5 +46,9 @@ function ChoosePizzaQuantity () {
     </>
   );
 }
+
+ChoosePizzaQuantity.propTypes = {
+  location: PropTypes.object.isRequired
+};
 
 export default ChoosePizzaQuantity;
