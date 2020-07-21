@@ -5,13 +5,15 @@ import {
   TextField as MaterialTextField,
   List,
   ListItem,
-  Typography
+  Typography,
+  Button
 } from '@material-ui/core';
 import Content from 'ui/content';
 import Footer from 'ui/footer/footer';
 import {
   UiTitle,
-  PaperContainer
+  PaperContainer,
+  FooterContent
 } from './styles';
 import { useOrder } from 'hooks';
 import { singularOrPlural } from 'utils';
@@ -77,7 +79,7 @@ function Checkout () {
                   return (
                     <ListItem key={ index }>
                       <Typography>
-                        { quantity } {' '}
+                        <b>{ quantity }</b> {' '}
                         { singularOrPlural(quantity, 'Pizza', 'Pizzas') } {' '}
                         <b>{ name.toUpperCase() }</b> { ' - ' }
                         ({ slices } fatias, { flavours } {' '}
@@ -98,7 +100,11 @@ function Checkout () {
       </Content>
 
       <Footer>
-        Rodapé do checkout
+        <FooterContent>
+          <Button variant='contained' color='primary' >
+            Confirmar Dados
+          </Button>
+        </FooterContent>
       </Footer>
     </>
   );

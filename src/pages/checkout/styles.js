@@ -17,3 +17,8 @@ export const PaperContainer = styled(Paper)`
     padding: ${ ({ theme }) => theme.spacing(2) }px;
   }
 `;
+
+export const FooterContent = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;

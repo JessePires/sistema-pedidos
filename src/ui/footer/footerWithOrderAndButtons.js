@@ -1,13 +1,16 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { useAuth } from 'hooks';
 import {
   Grid,
-  Button as MaterialButton,
   Typography
 } from '@material-ui/core';
-import { useAuth } from 'hooks';
+import {
+  OrderContainer,
+  ButtonsContainer,
+  Button
+} from './styles';
 import { singularOrPlural } from 'utils';
 
 function FooterWithOrderAndButtons ({ buttons, history, location }) {
@@ -58,31 +61,6 @@ function FooterWithOrderAndButtons ({ buttons, history, location }) {
     </Grid>
   );
 }
-
-const OrderContainer = styled(Grid).attrs({
-  item: true
-})`
-  && {
-    flex-grow: 1;
-  }
-`;
-
-const ButtonsContainer = styled(Grid).attrs({
-  item: true
-})`
-  & {
-    display: flex;
-    align-items: center
-  }
-`;
-
-const Button = styled(MaterialButton).attrs({
-  variant: 'contained'
-})`
-  & {
-    margin-left: ${ ({theme}) => theme.spacing(2) }px;
-  }
-`;
 
 FooterWithOrderAndButtons.propTypes = {
   buttons: PropTypes.object.isRequired,
