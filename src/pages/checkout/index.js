@@ -8,6 +8,7 @@ import {
   Typography
 } from '@material-ui/core';
 import Content from 'ui/content';
+import Footer from 'ui/footer/footer';
 import {
   UiTitle,
   PaperContainer
@@ -21,79 +22,85 @@ function Checkout () {
   console.log('order: ', order);
 
   return (
-    <Content>
-      <Grid
-        container
-        spacing={ 4 }
-      >
-        <Grid
-          item
-          xs={ 12 }
-          md={ 6 }
-        >
-          <UiTitle>Qual o endereço de entrega?</UiTitle>
-
-          <PaperContainer>
-            <Grid container spacing={ 2 } >
-              <TextField label='CEP' xs={ 4 } autoFocus />
-              <Grid item xs={ 8 } />
-
-              <TextField label='Rua' xs={ 9 } />
-
-              <TextField label='Número' xs={ 3 } />
-
-              <TextField label='Complemento' xs={ 12 } />
-
-              <TextField label='Cidade' xs={ 9 } />
-
-              <TextField label='Estado' xs={ 3 } />
-            </Grid>
-          </PaperContainer>
-
-          <UiTitle>Qual o seu telefone?</UiTitle>
-
-          <PaperContainer>
-            <TextField label='Telefone' xs={ 4 } />
-          </PaperContainer>
-        </Grid>
-
+    <>
+      <Content>
         <Grid
           container
-          item
-          xs={ 12 }
-          md={ 6 }
-          direction='column'
+          spacing={ 4 }
         >
-          <UiTitle>Informações do seu pedido:</UiTitle>
+          <Grid
+            item
+            xs={ 12 }
+            md={ 6 }
+          >
+            <UiTitle>Qual o endereço de entrega?</UiTitle>
 
-          <PaperContainer>
-            <List>
-              {order.pizzas.map((pizza, index) => {
-                const { pizzaFlavours, pizzaSize, quantity } = pizza;
-                const { name, slices, flavours } = pizzaSize;
+            <PaperContainer>
+              <Grid container spacing={ 2 } >
+                <TextField label='CEP' xs={ 4 } autoFocus />
+                <Grid item xs={ 8 } />
 
-                return (
-                  <ListItem key={ index }>
-                    <Typography>
-                      { quantity } {' '}
-                      { singularOrPlural(quantity, 'Pizza', 'Pizzas') } {' '}
-                      <b>{ name.toUpperCase() }</b> { ' - ' }
-                      ({ slices } fatias, { flavours } {' '}
-                      { singularOrPlural(flavours, 'sabor', 'sabores') })
+                <TextField label='Rua' xs={ 9 } />
 
-                      <br />
+                <TextField label='Número' xs={ 3 } />
 
-                      { singularOrPlural(pizzaFlavours.length, 'no sabor', 'nos sabores') } {' '}
-                      <b>{ pizzaFlavours.map(({ name }) => name).join(', ') }</b>
-                    </Typography>
-                  </ListItem>
-                );
-              })}
-            </List>
-          </PaperContainer>
+                <TextField label='Complemento' xs={ 12 } />
+
+                <TextField label='Cidade' xs={ 9 } />
+
+                <TextField label='Estado' xs={ 3 } />
+              </Grid>
+            </PaperContainer>
+
+            <UiTitle>Qual o seu telefone?</UiTitle>
+
+            <PaperContainer>
+              <TextField label='Telefone' xs={ 4 } />
+            </PaperContainer>
+          </Grid>
+
+          <Grid
+            container
+            item
+            xs={ 12 }
+            md={ 6 }
+            direction='column'
+          >
+            <UiTitle>Informações do seu pedido:</UiTitle>
+
+            <PaperContainer>
+              <List>
+                {order.pizzas.map((pizza, index) => {
+                  const { pizzaFlavours, pizzaSize, quantity } = pizza;
+                  const { name, slices, flavours } = pizzaSize;
+
+                  return (
+                    <ListItem key={ index }>
+                      <Typography>
+                        { quantity } {' '}
+                        { singularOrPlural(quantity, 'Pizza', 'Pizzas') } {' '}
+                        <b>{ name.toUpperCase() }</b> { ' - ' }
+                        ({ slices } fatias, { flavours } {' '}
+                        { singularOrPlural(flavours, 'sabor', 'sabores') })
+
+                        <br />
+
+                        { singularOrPlural(pizzaFlavours.length, 'no sabor', 'nos sabores') } {' '}
+                        <b>{ pizzaFlavours.map(({ name }) => name).join(', ') }</b>
+                      </Typography>
+                    </ListItem>
+                  );
+                })}
+              </List>
+            </PaperContainer>
+          </Grid>
         </Grid>
-      </Grid>
-    </Content>
+      </Content>
+
+      <Footer>
+        Rodapé do checkout
+      </Footer>
+    </>
   );
 }
 

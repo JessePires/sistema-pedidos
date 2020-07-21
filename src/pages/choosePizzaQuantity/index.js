@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Content from 'ui/content';
 import HeaderContent from 'ui/headerContent';
 import { H4 } from 'ui/title';
-import Footer from 'ui/footer';
+import Footer from 'ui/footer/footer';
 import {
   Input,
   MainContent,

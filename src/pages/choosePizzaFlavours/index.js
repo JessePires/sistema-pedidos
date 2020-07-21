@@ -16,7 +16,7 @@ import { H4 } from 'ui/title';
 import HeaderContent from 'ui/headerContent';
 import PizzasGrid from 'ui/pizzasGrid';
 import Divider from  'ui/divider';
-import Footer from 'ui/footer';
+import Footer from 'ui/footer/footer';
 import { toMoney, singularOrPlural } from 'utils';
 import { HOME, CHOOSE_PIZZA_QUANTITY } from 'routes';
 
