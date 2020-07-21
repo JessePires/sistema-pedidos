@@ -5,19 +5,23 @@ import Content from 'ui/content';
 import HeaderContent from 'ui/headerContent';
 import { H4 } from 'ui/title';
 import Footer from 'ui/footer';
-import { Button } from '@material-ui/core';
 import {
   Input,
-  MainContent
+  MainContent,
+  ButtonAddPizza
 } from './styles';
 import { HOME, CHECKOUT } from 'routes';
+import { useOrder } from 'hooks';
 
 function ChoosePizzaQuantity ({ location }) {
   const [quantity, setQuantity] = useState(1);
+  const { addPizzaToOrder } = useOrder();
 
   if (!location.state) {
     return <Redirect to={ HOME } />
   }
+
+  console.log('location.state:', location.state);
 
   function handleChange (e) {
     const { value } = e.target;
@@ -25,6 +29,14 @@ function ChoosePizzaQuantity ({ location }) {
     if (value >= 1) {
       setQuantity(e.target.value);
     }
+  }
+
+  function addPizza () {
+    addPizzaToOrder({
+      size: location.state.pizzaSize,
+      flavours: location.state.pizzaFlavours.map(flavour => flavour.id),
+      quantity
+    });
   }
 
   return (
@@ -44,10 +56,10 @@ function ChoosePizzaQuantity ({ location }) {
             autoFocus
           />
 
-          <Button variant='contained' color='secondary' >
+          <ButtonAddPizza onClick={ addPizza } >
             Adicionar e <br/>
             montar outra
-          </Button>
+          </ButtonAddPizza>
         </MainContent>
       </Content>
 
@@ -59,6 +71,7 @@ function ChoosePizzaQuantity ({ location }) {
 
           action: {
             to: CHECKOUT,
+            onClick: addPizza,
             children: 'Finalizar Compra',
           }
         }}

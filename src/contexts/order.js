@@ -4,8 +4,14 @@ import PropTypes from 'prop-types';
 export const OrderContext = createContext();
 
 function Order ({ children }) {
+  function addPizzaToOrder (pizza) {
+    console.log('pizza order:', pizza);
+  };
+
   return (
-    <OrderContext.Provider value={{}} >
+    <OrderContext.Provider value={{
+      addPizzaToOrder
+    }} >
       { children }
     </OrderContext.Provider>
   );
