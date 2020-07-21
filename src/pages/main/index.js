@@ -8,13 +8,15 @@ import {
   HOME,
   CHOOSE_PIZZA_FLAVOURS,
   CHOOSE_PIZZA_QUANTITY,
-  CHECKOUT
+  CHECKOUT,
+  CHECKOUT_CONFIRMATION
 } from 'routes';
 
 const ChoosePizzaSize = lazy(() => import('pages/choosePizzaSize'));
 const ChoosePizzaFlavours = lazy(() => import('pages/choosePizzaFlavours'));
 const ChoosePizzaQuantity = lazy(() => import('pages/choosePizzaQuantity'));
 const Checkout = lazy(() => import('pages/checkout'));
+const CheckoutConfirmation = lazy(() => import('pages/checkoutConfirmation'));
 
 const Main = () => (
   <>
@@ -42,7 +44,13 @@ const Main = () => (
 
         <Route
           path={ CHECKOUT }
+          exact
           component={ Checkout }
+        />
+
+        <Route
+          path={ CHECKOUT_CONFIRMATION }
+          component={ CheckoutConfirmation }
         />
       </Switch>
     </Suspense>
