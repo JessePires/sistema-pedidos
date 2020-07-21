@@ -1,63 +1,22 @@
-import React, { useState } from 'react';
-import { useAuth } from 'hooks';
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { AppBar } from '@material-ui/core';
 import {
-  AppBar,
-  IconButton,
-  Menu,
-  Typography,
-  MenuItem
-} from '@material-ui/core';
-import { AccountCircle } from '@material-ui/icons';
-import {
-  Logo,
-  Toolbar,
-  LogoContainer,
-  LinkLogo
+  Toolbar
 } from './styles.js';
-import { HOME } from 'routes';
+import HeaderCommon from './headerCommon';
+import HeaderCheckout from './headerCheckout';
+import { CHECKOUT } from 'routes';
 
-const Header = () => {
-  const [ anchorElement, setAnchorElement ] = useState(null);
-  const { userInfo, logout } = useAuth();
-
-  const handleOpenMenu = (e) => {
-    setAnchorElement(e.target);
-  };
-
-  const handleClose = () => {
-    setAnchorElement(null);
-  };
-
-  return (
-    <AppBar>
-      <Toolbar>
-        <LogoContainer>
-          <LinkLogo to={ HOME } >
-            <Logo />
-          </LinkLogo>
-        </LogoContainer>
-
-        <Typography color='inherit' >
-          Olá { userInfo.user.firstName } :)
-        </Typography>
-
-        <IconButton
-          color='inherit'
-          onClick={ handleOpenMenu }
-        >
-          <AccountCircle />
-        </IconButton>
-
-        <Menu
-          open={ Boolean(anchorElement) }
-          onClose={ handleClose }
-          anchorEl={ anchorElement }
-        >
-          <MenuItem onClick={ logout } >Sair</MenuItem>
-        </Menu>
-      </Toolbar>
-    </AppBar>
-  );
-};
+const Header = () => (
+  <AppBar>
+    <Toolbar>
+      <Switch>
+        <Route path={ CHECKOUT } component={ HeaderCheckout } />
+        <Route component={ HeaderCommon } />
+      </Switch>
+    </Toolbar>
+  </AppBar>
+);
 
 export default Header;
