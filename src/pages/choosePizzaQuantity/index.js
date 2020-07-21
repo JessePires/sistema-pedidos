@@ -15,13 +15,13 @@ import { useOrder } from 'hooks';
 
 function ChoosePizzaQuantity ({ location }) {
   const [quantity, setQuantity] = useState(1);
-  const { addPizzaToOrder } = useOrder();
+  const { order, addPizzaToOrder } = useOrder();
 
   if (!location.state) {
     return <Redirect to={ HOME } />
   }
 
-  console.log('location.state:', location.state);
+  console.log('order:', order);
 
   function handleChange (e) {
     const { value } = e.target;
@@ -56,7 +56,10 @@ function ChoosePizzaQuantity ({ location }) {
             autoFocus
           />
 
-          <ButtonAddPizza onClick={ addPizza } >
+          <ButtonAddPizza
+            to={ HOME }
+            onClick={ addPizza }
+          >
             Adicionar e <br/>
             montar outra
           </ButtonAddPizza>
