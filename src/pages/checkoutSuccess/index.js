@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from 'hooks';
 import FooterCheckout from 'pages/checkout/footerCheckout';
 import {
@@ -17,6 +18,7 @@ import {
   PaperContainer,
   Divider
 } from './styles';
+import { HOME } from 'routes';
 
 function CheckoutSuccess () {
   const { userInfo } = useAuth();
@@ -63,6 +65,8 @@ function CheckoutSuccess () {
           variant='contained'
           color='secondary'
           size='large'
+          component={ Link }
+          to={ HOME }
         >
           Voltar para página inicial
         </Button>
