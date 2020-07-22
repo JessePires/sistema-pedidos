@@ -1,10 +1,8 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { useOrder } from 'hooks';
 import {
   Grid,
-  TextField as MaterialTextField,
   Button
 } from '@material-ui/core';
 import Content from 'ui/content';
@@ -13,7 +11,9 @@ import {
   UiTitle,
   PaperContainer
 } from './styles';
+import TextField from './textField';
 import FooterCheckout from './footerCheckout';
+import FormAddress from './formAddress';
 import { CHECKOUT_CONFIRMATION, HOME } from 'routes';
 
 function Checkout () {
@@ -38,20 +38,7 @@ function Checkout () {
             <UiTitle>Qual o endereço de entrega?</UiTitle>
 
             <PaperContainer>
-              <Grid container spacing={ 2 } >
-                <TextField label='CEP' xs={ 4 } autoFocus />
-                <Grid item xs={ 8 } />
-
-                <TextField label='Rua' xs={ 9 } />
-
-                <TextField label='Número' xs={ 3 } />
-
-                <TextField label='Complemento' xs={ 12 } />
-
-                <TextField label='Cidade' xs={ 9 } />
-
-                <TextField label='Estado' xs={ 3 } />
-              </Grid>
+              <FormAddress />
             </PaperContainer>
 
             <UiTitle>Qual o seu telefone?</UiTitle>
@@ -90,23 +77,5 @@ function Checkout () {
     </>
   );
 }
-
-function TextField ({ xs, autoFocus, ...props }) {
-  return (
-    <Grid item xs={ xs } >
-      <MaterialTextField
-        variant='outlined'
-        fullWidth
-        inputProps={{ autoFocus }}
-        { ...props }
-      />
-    </Grid>
-  );
-}
-
-TextField.propTypes = {
-  xs: PropTypes.number,
-  autoFocus: PropTypes.bool
-};
 
 export default Checkout;
