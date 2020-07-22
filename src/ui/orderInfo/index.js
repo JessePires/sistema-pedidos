@@ -1,10 +1,12 @@
 import React from 'react';
+import { useOrder } from 'hooks';
 import {
   List,
-  ListItem,
-  Typography
+  Typography,
+  IconButton
 } from '@material-ui/core';
-import { useOrder } from 'hooks';
+import { Close } from '@material-ui/icons';
+import { ListItem } from './styles';
 import { singularOrPlural } from 'utils';
 
 function OrderInfo () {
@@ -30,6 +32,10 @@ function OrderInfo () {
               { singularOrPlural(pizzaFlavours.length, 'no sabor', 'nos sabores') } {' '}
               <b>{ pizzaFlavours.map(({ name }) => name).join(', ') }</b>
             </Typography>
+
+            <IconButton title='Remover' color='secondary' >
+              <Close />
+            </IconButton>
           </ListItem>
         );
       })}
