@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import uuidV4 from 'uuid/v4';
+import { v4 as uuidv4 } from 'uuid';
 
 export const OrderContext = createContext();
 
@@ -8,21 +8,21 @@ function Order ({ children }) {
   const [ pizzas, addPizza ] = useState([]);
   const [ orderInProgress, setOrderInProgress ] = useState(false);
 
-  function newPizza (pizza) {
-    return {
-      id: uuidV4(),
-      ...pizza
-    };
-  }
-
   function addPizzaToOrder (pizza) {
     if (orderInProgress) {
-      addPizza((pizzas) => pizzas.concat(newPizza(pizza)));
+      return addPizza(pizzas => pizzas.concat(newPizza(pizza)));
     }
 
     setOrderInProgress(true);
     addPizza([ newPizza(pizza) ]);
   };
+
+  function newPizza (pizza) {
+    return {
+      id: uuidv4(),
+      ...pizza
+    };
+  }
 
   function removePizzaFromOrder (id) {
     console.log('RemovePizzaFromOrder => id: ', id);

@@ -32,6 +32,8 @@ function ChoosePizzaQuantity ({ location }) {
   }
 
   function addPizza () {
+    console.log('location.state: ', location.state);
+
     addPizzaToOrder({
       ...location.state,
       quantity
