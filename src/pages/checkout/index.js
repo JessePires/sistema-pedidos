@@ -64,7 +64,7 @@ function Checkout () {
             <UiTitle>Informações do seu pedido:</UiTitle>
 
             <PaperContainer>
-              <OrderInfo />
+              <OrderInfo showOptions />
             </PaperContainer>
           </Grid>
         </Grid>

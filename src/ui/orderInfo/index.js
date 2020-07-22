@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useOrder } from 'hooks';
 import {
   List,
@@ -9,17 +10,18 @@ import { Close } from '@material-ui/icons';
 import { ListItem } from './styles';
 import { singularOrPlural } from 'utils';
 
-function OrderInfo () {
-  const { order } = useOrder();
+function OrderInfo ({ showOptions }) {
+  const { order, removePizzaFromOrder } = useOrder();
+  console.log('orderInfo:', order);
 
   return (
     <List>
-      {order.pizzas.map((pizza, index) => {
+      {order.pizzas.map((pizza) => {
         const { pizzaFlavours, pizzaSize, quantity } = pizza;
         const { name, slices, flavours } = pizzaSize;
 
         return (
-          <ListItem key={ index }>
+          <ListItem key={ pizza.id }>
             <Typography>
               <b>{ quantity }</b> {' '}
               { singularOrPlural(quantity, 'Pizza', 'Pizzas') } {' '}
@@ -33,14 +35,24 @@ function OrderInfo () {
               <b>{ pizzaFlavours.map(({ name }) => name).join(', ') }</b>
             </Typography>
 
-            <IconButton title='Remover' color='secondary' >
-              <Close />
-            </IconButton>
+            {showOptions && (
+              <IconButton
+                title='Remover'
+                color='secondary'
+                onClick={ () => removePizzaFromOrder(pizza.id) }
+              >
+                <Close />
+              </IconButton>
+            )}
           </ListItem>
         );
       })}
     </List>
   );
 }
+
+OrderInfo.propTypes = {
+  showOptions: PropTypes.bool
+};
 
 export default OrderInfo;
