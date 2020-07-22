@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from 'hooks';
+import { useAuth, useOrder } from 'hooks';
 import FooterCheckout from 'pages/checkout/footerCheckout';
 import {
   Typography,
@@ -22,6 +22,7 @@ import { CHECKOUT_SUCCESS } from 'routes';
 
 function CheckoutConfirmation () {
   const { userInfo } = useAuth();
+  const { sendOrder } = useOrder();
 
   return (
     <>
@@ -63,6 +64,7 @@ function CheckoutConfirmation () {
           size='large'
           component={ Link }
           to={ CHECKOUT_SUCCESS }
+          onClick={ sendOrder }
         >
           Tudo Certo!
         </Button>
