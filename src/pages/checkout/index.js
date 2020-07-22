@@ -7,13 +7,12 @@ import {
   Button
 } from '@material-ui/core';
 import Content from 'ui/content';
-import Footer from 'ui/footer/footer';
 import OrderInfo from 'ui/orderInfo';
 import {
   UiTitle,
-  PaperContainer,
-  FooterContent
+  PaperContainer
 } from './styles';
+import FooterCheckout from './footerCheckout';
 import { CHECKOUT_CONFIRMATION } from 'routes';
 
 function Checkout () {
@@ -71,18 +70,16 @@ function Checkout () {
         </Grid>
       </Content>
 
-      <Footer>
-        <FooterContent>
-          <Button
-            variant='contained'
-            color='primary'
-            component={ Link }
-            to={ CHECKOUT_CONFIRMATION }
-          >
-            Confirmar Dados
-          </Button>
-        </FooterContent>
-      </Footer>
+      <FooterCheckout>
+        <Button
+          variant='contained'
+          color='primary'
+          component={ Link }
+          to={ CHECKOUT_CONFIRMATION }
+        >
+          Confirmar Dados
+        </Button>
+      </FooterCheckout>
     </>
   );
 }

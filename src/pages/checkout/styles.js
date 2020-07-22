@@ -20,5 +20,5 @@ export const PaperContainer = styled(Paper)`
 
 export const FooterContent = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: ${ ({ justifyContent }) => justifyContent || 'flex-end' };
 `;
