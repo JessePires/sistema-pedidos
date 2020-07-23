@@ -11,9 +11,9 @@ import {
   UiTitle,
   PaperContainer
 } from './styles';
-import TextField from './textField';
 import FooterCheckout from './footerCheckout';
 import FormAddress from './formAddress';
+import PhoneField from './phoneField';
 import { CHECKOUT_CONFIRMATION, HOME } from 'routes';
 
 function Checkout () {
@@ -44,7 +44,7 @@ function Checkout () {
             <UiTitle>Qual o seu telefone?</UiTitle>
 
             <PaperContainer>
-              <TextField label='Telefone' xs={ 4 } />
+              <PhoneField />
             </PaperContainer>
           </Grid>
 
