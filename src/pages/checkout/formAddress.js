@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect, useReducer, useRef } from 'react';
 import {
   Grid,
   CircularProgress
@@ -7,10 +7,10 @@ import TextField from './textField';
 
 function FormAddress () {
   const [ cep, setCep ] = useState('');
-  const [ addressState, dispatch ] = useReducer(reducer, initialState);
   const [ fetchingCep, setFetchingCep ] = useState(false);
-
-  console.log('addressState:', addressState);
+  const [ addressState, dispatch ] = useReducer(reducer, initialState);
+  const numberField = useRef(); // to keep the numberField reference even after a new render
+  const addressField = useRef();
 
   useEffect(() => {
     async function fetchAddress () {
@@ -24,13 +24,35 @@ function FormAddress () {
       const data = await fetch(`https://ws.apicep.com/cep/${ cep }.json`);
       setFetchingCep(false);
 
+      if (!data.ok) {
+        dispatch({ type: 'RESET' });
+        addressField.current.focus();
+        return;
+      }
+
       const result = await data.json();
       console.log(result);
+
+      if (!result.ok) {
+        dispatch({
+          type: 'FAIL',
+          payload: {
+            error: result.message
+          }
+        });
+        return;
+      }
 
       dispatch({
         type: 'UPDATE_FULL_ADDRESS',
         payload: result
       });
+
+      if (result.address === '') {
+        addressField.current.focus();
+      } else {
+        numberField.current.focus();
+      }
     };
 
     fetchAddress();
@@ -47,7 +69,14 @@ function FormAddress () {
       .replace(/(-\d{3})\d+?$/, '$1');
   }
 
-  function handleChangeField (e) {}
+  function handleChangeField (e) {
+    const { name, value } = e.target;
+
+    dispatch({
+      type: 'UPDATE_FIELD',
+      payload: { name, value}
+    });
+  }
 
   return (
     <Grid
@@ -61,6 +90,7 @@ function FormAddress () {
         autoFocus
         value={ cep }
         onChange={ handleChangeCep }
+        error={ !!addressState.error }
       />
 
       <Grid item xs={ 8 } >
@@ -71,13 +101,15 @@ function FormAddress () {
         {
           label: 'Rua',
           xs: 9,
-          name: 'address'
+          name: 'address',
+          inputRef: addressField
         },
 
         {
           label: 'Número',
           xs: 3,
-          name: 'number'
+          name: 'number',
+          inputRef: numberField
         },
 
         {
@@ -116,8 +148,27 @@ function reducer (state, action) {
   if (action.type === 'UPDATE_FULL_ADDRESS') {
     return {
       ...state,
-      ...action.payload
-    }
+      ...action.payload,
+      error: null
+    };
+  }
+
+  if (action.type === 'UPDATE_FIELD') {
+    return {
+      ...state,
+      [ action.payload.name ]: action.payload.value
+    };
+  }
+
+  if (action.type === 'FAIL') {
+    return {
+      ...initialState,
+      error: action.payload.error
+    };
+  }
+
+  if (action.type === 'RESET') {
+    return initialState;
   }
 
   return state;
@@ -130,6 +181,7 @@ const initialState = {
   district: '',
   complement: '',
   city: '',
+  state: '',
   error: null
 };
 
