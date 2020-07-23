@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useAuth } from 'hooks';
+import React from 'react';
+import { useAuth, useCollection } from 'hooks';
 import {
   Grid,
   Card,
@@ -16,37 +16,19 @@ import HeaderContent from 'ui/headerContent';
 import Divider from 'ui/divider';
 import CardLink from 'ui/cardLink';
 import { CHOOSE_PIZZA_FLAVOURS } from 'routes';
-import { db } from 'services/firebase';
 import { singularOrPlural } from 'utils';
 
 const ChoosePizzaSize = () => {
   const { userInfo } = useAuth();
-  const [ pizzasSizes, setPizzasSizes ] = useState([
+  const pizzasSizes = useCollection('pizzasSizes');
 
-  ]);
+  if (!pizzasSizes) {
+    return 'Carregando tamanhos...';
+  }
 
-  useEffect(() => {
-    let mounted = false;
-
-    db.collection('pizzasSizes').get().then(querySnapshot => {
-      let sizes = [];
-
-      querySnapshot.forEach(doc => {
-        sizes.push({
-          id: doc.id,
-          ...doc.data()
-        });
-      });
-
-      if (mounted) {
-        setPizzasSizes(sizes);
-      }
-    });
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
+  if (pizzasSizes.length === 0) {
+    return 'Não há dados!';
+  }
 
   return (
     <>

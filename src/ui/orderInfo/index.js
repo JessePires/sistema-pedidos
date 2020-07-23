@@ -17,7 +17,7 @@ function OrderInfo ({ showOptions }) {
   return (
     <List>
       {order.pizzas.map((pizza) => {
-        const { pizzaFlavours, pizzaSize, quantity } = pizza;
+        const { pizzasFlavours, pizzaSize, quantity } = pizza;
         const { name, slices, flavours } = pizzaSize;
 
         return (
@@ -31,8 +31,8 @@ function OrderInfo ({ showOptions }) {
 
               <br />
 
-              { singularOrPlural(pizzaFlavours.length, 'no sabor', 'nos sabores') } {' '}
-              <b>{ pizzaFlavours.map(({ name }) => name).join(', ') }</b>
+              { singularOrPlural(pizzasFlavours.length, 'no sabor', 'nos sabores') } {' '}
+              <b>{ pizzasFlavours.map(({ name }) => name).join(', ') }</b>
             </Typography>
 
             {showOptions && (

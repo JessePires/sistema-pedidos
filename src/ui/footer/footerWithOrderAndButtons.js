@@ -16,10 +16,10 @@ import { singularOrPlural } from 'utils';
 function FooterWithOrderAndButtons ({ buttons, history, location }) {
   const { userInfo } = useAuth();
 
-  const { pizzaSize, pizzaFlavours } = location.state;
+  const { pizzaSize, pizzasFlavours } = location.state;
   const { name, slices, flavours } = pizzaSize;
 
-  console.log('pizzaFlavours: ', pizzaFlavours);
+  console.log('pizzaFlavours: ', pizzasFlavours);
 
   return (
     <Grid container >
@@ -34,10 +34,10 @@ function FooterWithOrderAndButtons ({ buttons, history, location }) {
           { singularOrPlural(flavours, 'sabor', 'sabores') })
         </Typography>
 
-        {pizzaFlavours && (
+        {pizzasFlavours && (
           <Typography>
-            { singularOrPlural(pizzaFlavours.length, 'no sabor', 'nos sabores') } {' '}
-            <b>{ pizzaFlavours.map(({ name }) => name).join(', ') }</b>
+            { singularOrPlural(pizzasFlavours.length, 'no sabor', 'nos sabores') } {' '}
+            <b>{ pizzasFlavours.map(({ name }) => name).join(', ') }</b>
           </Typography>
         )}
       </OrderContainer>
