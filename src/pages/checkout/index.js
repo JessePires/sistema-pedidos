@@ -17,7 +17,7 @@ import PhoneField from './phoneField';
 import { CHECKOUT_CONFIRMATION, HOME } from 'routes';
 
 function Checkout () {
-  const { order } = useOrder();
+  const { order, addAddress, addPhone } = useOrder();
 
   if (!order.pizzas.length) {
     return <Redirect to={ HOME } />
@@ -38,13 +38,13 @@ function Checkout () {
             <UiTitle>Qual o endereço de entrega?</UiTitle>
 
             <PaperContainer>
-              <FormAddress />
+              <FormAddress onUpdate={ addAddress } />
             </PaperContainer>
 
             <UiTitle>Qual o seu telefone?</UiTitle>
 
             <PaperContainer>
-              <PhoneField />
+              <PhoneField onUpdate={ addPhone } />
             </PaperContainer>
           </Grid>
 

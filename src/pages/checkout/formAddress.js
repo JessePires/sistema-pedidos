@@ -1,16 +1,23 @@
 import React, { useState, useEffect, useReducer, useRef } from 'react';
+import PropTypes from 'prop-types';
 import {
   Grid,
   CircularProgress
 } from '@material-ui/core';
 import TextField from './textField';
 
-function FormAddress () {
+function FormAddress ({ onUpdate = () => {} }) {
   const [ cep, setCep ] = useState('');
   const [ fetchingCep, setFetchingCep ] = useState(false);
   const [ addressState, dispatch ] = useReducer(reducer, initialState);
-  const numberField = useRef(); // to keep the numberField reference even after a new render
+
+  // to keep the var reference even after a new render
+  const numberField = useRef();
   const addressField = useRef();
+
+  useEffect(() => { // to handle with addAddress()
+    onUpdate(addressState);
+  }, [addressState, onUpdate]);
 
   useEffect(() => {
     async function fetchAddress () {
@@ -183,6 +190,10 @@ const initialState = {
   city: '',
   state: '',
   error: null
+};
+
+FormAddress.propTypes = {
+  onUpdate: PropTypes.func
 };
 
 export default FormAddress;

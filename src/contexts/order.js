@@ -6,6 +6,8 @@ export const OrderContext = createContext();
 
 function Order ({ children }) {
   const [ pizzas, addPizza ] = useState([]);
+  const [ address, addAddress ] = useState({});
+  const [ phone, addPhone ] = useState('');
   const [ orderInProgress, setOrderInProgress ] = useState(false);
 
   function addPizzaToOrder (pizza) {
@@ -39,9 +41,13 @@ function Order ({ children }) {
   return (
     <OrderContext.Provider value={{
       order: {
-        pizzas
+        pizzas,
+        address,
+        phone
       },
       addPizzaToOrder,
+      addAddress,
+      addPhone,
       removePizzaFromOrder,
       sendOrder
     }} >
