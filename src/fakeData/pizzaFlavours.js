@@ -24,7 +24,7 @@ export default [
   {
     id: '2',
     image: '/fakeData/images/pizza-prestigio.jpg',
-    name: 'Pizza de Prestígio',
+    name: 'Prestígio',
     value: {
       '0': 30,
       '1': 40,
