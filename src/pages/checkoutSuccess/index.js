@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from 'hooks';
+import { useAuth, useOrder } from 'hooks';
 import FooterCheckout from 'pages/checkout/footerCheckout';
 import {
   Typography,
@@ -8,10 +8,7 @@ import {
   Button
 } from '@material-ui/core';
 import Content from 'ui/content';
-import {
-  H4,
-  H6
-} from 'ui/title';
+import { H4, H6 } from 'ui/title';
 import OrderInfo from 'ui/orderInfo';
 import {
   Header,
@@ -22,6 +19,7 @@ import { HOME } from 'routes';
 
 function CheckoutSuccess () {
   const { userInfo } = useAuth();
+  const { order } = useOrder();
 
   return (
     <>
@@ -47,14 +45,23 @@ function CheckoutSuccess () {
 
             <H6>Endereço para entrega:</H6>
             <Typography>
-              Rua tal, 10, complemento, bairro, CEP: 87365-000 - Cidade/UF
+              { order.address.address },
+              { ' n' } { order.address.number },
+              {' '} { order.address.complement } <br/>
+              Bairro: {
+                order.address.district === ''
+                ? 'Centro'
+                : order.address.district
+              } <br/>
+              CEP: { order.address.code } <br/>
+              { order.address.city }/{ order.address.state }
             </Typography>
 
             <Divider />
 
             <H6>Telefone para contato:</H6>
             <Typography>
-              (44) 9 9897-1134
+              { order.phone }
             </Typography>
           </PaperContainer>
         </Container>
