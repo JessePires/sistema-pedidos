@@ -1,6 +1,8 @@
 import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useAuth } from 'hooks';
 import { v4 as uuidv4 } from 'uuid';
+import firebase, { db } from 'services/firebase';
 
 export const OrderContext = createContext();
 
@@ -9,6 +11,7 @@ function Order ({ children }) {
   const [ address, addAddress ] = useState({});
   const [ phone, addPhone ] = useState('');
   const [ orderInProgress, setOrderInProgress ] = useState(false);
+  const { userInfo } = useAuth();
 
   function addPizzaToOrder (pizza) {
     if (orderInProgress) {
@@ -32,8 +35,24 @@ function Order ({ children }) {
     addPizza((pizzas) => pizzas.filter(pizza => pizza.id !== id));
   };
 
-  function sendOrder () {
+  async function sendOrder () {
     console.log('send order');
+
+    try {
+      await db.collection('orders').add({
+        userId: userInfo.user.uid,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        address,
+        phone,
+        pizzas: pizzas.map(pizza => ({
+          size: pizza.pizzaSize,
+          flavours: pizza.pizzasFlavours,
+          quantity: pizza.quantity
+        }))
+      });
+    } catch (e) {
+      console.log('erro ao salvar pedido:', e);
+    }
 
     setOrderInProgress(false);
   };
